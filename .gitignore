@@ -1,0 +1,22 @@
+# Ignore Intermediate files
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+
+# Ignore Intermediate plugin files
+/Plugins/*/Intermediate
+/Plugins/Developer/*/Intermediate
+
+# Ignore plugin binaries
+/Plugins/**/Binaries
+
+# IDEs
+.vs/
+.vscode/
+.vsconfig
+.idea/
+
+# Solution file
+*.sln

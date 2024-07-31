@@ -76,18 +76,36 @@ void UOculusXRRetargetIKRetargeterEditor::ValidateAnimNodeDuringCompilation(USke
 	}
 
 	// validate SOURCE IK Rig asset has been assigned
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 4
+	if (!Node.IKRetargeterAsset->GetIKRig(ERetargetSourceOrTarget::Source))
+	{
+		MessageLog.Warning(TEXT("@@ has IK Retargeter that is missing a source IK Rig asset."), this);
+	}
+#else
 	if (!Node.IKRetargeterAsset->GetSourceIKRig())
 	{
 		MessageLog.Warning(TEXT("@@ has IK Retargeter that is missing a source IK Rig asset."), this);
 	}
+#endif
 
 	// validate TARGET IK Rig asset has been assigned
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 4
+	if (!Node.IKRetargeterAsset->GetIKRig(ERetargetSourceOrTarget::Target))
+	{
+		MessageLog.Warning(TEXT("@@ has IK Retargeter that is missing a target IK Rig asset."), this);
+	}
+#else
 	if (!Node.IKRetargeterAsset->GetTargetIKRig())
 	{
 		MessageLog.Warning(TEXT("@@ has IK Retargeter that is missing a target IK Rig asset."), this);
 	}
+#endif
 
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 4
+	if (!(Node.IKRetargeterAsset->GetIKRig(ERetargetSourceOrTarget::Source) && Node.IKRetargeterAsset->GetIKRig(ERetargetSourceOrTarget::Target)))
+#else
 	if (!(Node.IKRetargeterAsset->GetSourceIKRig() && Node.IKRetargeterAsset->GetTargetIKRig()))
+#endif
 	{
 		return;
 	}
@@ -115,7 +133,11 @@ void UOculusXRRetargetIKRetargeterEditor::ValidateAnimNodeDuringCompilation(USke
 	{
 		// validate that target bone chains exist on this skeleton
 		const FReferenceSkeleton& RefSkel = ForSkeleton->GetReferenceSkeleton();
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 4
+		const TArray<FBoneChain>& TargetBoneChains = Node.IKRetargeterAsset->GetIKRig(ERetargetSourceOrTarget::Target)->GetRetargetChains();
+#else
 		const TArray<FBoneChain>& TargetBoneChains = Node.IKRetargeterAsset->GetTargetIKRig()->GetRetargetChains();
+#endif
 		for (const FBoneChain& Chain : TargetBoneChains)
 		{
 			if (RefSkel.FindBoneIndex(Chain.StartBone.BoneName) == INDEX_NONE)
@@ -131,6 +153,7 @@ void UOculusXRRetargetIKRetargeterEditor::ValidateAnimNodeDuringCompilation(USke
 	}
 }
 
+
 void UOculusXRRetargetIKRetargeterEditor::PreloadRequiredAssets()
 {
 	Super::PreloadRequiredAssets();
@@ -138,9 +161,15 @@ void UOculusXRRetargetIKRetargeterEditor::PreloadRequiredAssets()
 	if (Node.IKRetargeterAsset)
 	{
 		PreloadObject(Node.IKRetargeterAsset);
+#if ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 4
+		PreloadObject(Node.IKRetargeterAsset->GetIKRigWriteable(ERetargetSourceOrTarget::Source));
+		PreloadObject(Node.IKRetargeterAsset->GetIKRigWriteable(ERetargetSourceOrTarget::Target));
+#else
 		PreloadObject(Node.IKRetargeterAsset->GetSourceIKRigWriteable());
 		PreloadObject(Node.IKRetargeterAsset->GetTargetIKRigWriteable());
+#endif
 	}
 }
+
 
 #undef LOCTEXT_NAMESPACE

@@ -59,8 +59,8 @@ class NamingSchemes
 {
 public:
 	/**
-	* The V0 corrective naming scheme.
-	*/
+	 * The V0 corrective naming scheme.
+	 */
 	static NamingScheme* V0()
 	{
 		return new NamingSchemeV0();

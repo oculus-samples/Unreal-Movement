@@ -11,11 +11,12 @@ using System.Collections.Generic;
 
 public class MovementSampleTarget : TargetRules
 {
-	public MovementSampleTarget(TargetInfo Target) : base(Target)
-	{
-		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V2;
+    public MovementSampleTarget(TargetInfo Target) : base(Target)
+    {
+        Type = TargetType.Game;
+        DefaultBuildSettings = BuildSettingsVersion.V5;
+        IncludeOrderVersion = EngineIncludeOrderVersion.Latest;
 
-		ExtraModuleNames.AddRange(new string[] { "MovementSample" });
-	}
+        ExtraModuleNames.AddRange(new string[] { "MovementSample" });
+    }
 }

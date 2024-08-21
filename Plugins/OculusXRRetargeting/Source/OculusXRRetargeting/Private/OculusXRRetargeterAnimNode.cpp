@@ -76,7 +76,7 @@ void FOculusXRRetargeterAnimNode::Evaluate_AnyThread(FPoseContext& Output)
 {
 	DECLARE_SCOPE_HIERARCHICAL_COUNTER_ANIMNODE(Evaluate_AnyThread)
 
-	//SCOPE_CYCLE_COUNTER(STAT_IKRetarget);
+	// SCOPE_CYCLE_COUNTER(STAT_IKRetarget);
 
 	if (!(IKRetargeterAsset && Processor && SourceMeshComponent.IsValid()))
 	{

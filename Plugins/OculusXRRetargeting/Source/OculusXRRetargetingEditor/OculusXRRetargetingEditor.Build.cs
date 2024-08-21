@@ -10,26 +10,26 @@ using UnrealBuildTool;
 
 public class OculusXRRetargetingEditor : ModuleRules
 {
-	public OculusXRRetargetingEditor(ReadOnlyTargetRules Target) : base(Target)
-	{
-		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+    public OculusXRRetargetingEditor(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(
-			new string[]
-			{
-				"OculusXRRetargeting", "Core", "CoreUObject", "Engine", "InputCore", "IKRig", "IKRigDeveloper", "IKRigEditor",
-				"AnimGraph", "AnimGraphRuntime", "OculusXRMovement"
-			}
-		);
+        PublicDependencyModuleNames.AddRange(
+            new string[]
+            {
+                "OculusXRRetargeting", "Core", "CoreUObject", "Engine", "InputCore", "IKRig", "IKRigDeveloper", "IKRigEditor",
+                "AnimGraph", "AnimGraphRuntime", "OculusXRMovement"
+            }
+        );
 
-		PrivateDependencyModuleNames.AddRange(
-			new string[]
-			{
-				"UnrealEd",
-				"AnimGraph",
-				"AnimGraphRuntime",
-				"BlueprintGraph",
-			}
-		);
-	}
+        PrivateDependencyModuleNames.AddRange(
+            new string[]
+            {
+                "UnrealEd",
+                "AnimGraph",
+                "AnimGraphRuntime",
+                "BlueprintGraph",
+            }
+        );
+    }
 }

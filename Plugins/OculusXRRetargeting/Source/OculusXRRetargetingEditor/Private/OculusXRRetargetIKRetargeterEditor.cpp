@@ -76,18 +76,18 @@ void UOculusXRRetargetIKRetargeterEditor::ValidateAnimNodeDuringCompilation(USke
 	}
 
 	// validate SOURCE IK Rig asset has been assigned
-	if (!Node.IKRetargeterAsset->GetSourceIKRig())
+	if (!Node.IKRetargeterAsset->GetIKRig(ERetargetSourceOrTarget::Source))
 	{
 		MessageLog.Warning(TEXT("@@ has IK Retargeter that is missing a source IK Rig asset."), this);
 	}
 
 	// validate TARGET IK Rig asset has been assigned
-	if (!Node.IKRetargeterAsset->GetTargetIKRig())
+	if (!Node.IKRetargeterAsset->GetIKRig(ERetargetSourceOrTarget::Target))
 	{
 		MessageLog.Warning(TEXT("@@ has IK Retargeter that is missing a target IK Rig asset."), this);
 	}
 
-	if (!(Node.IKRetargeterAsset->GetSourceIKRig() && Node.IKRetargeterAsset->GetTargetIKRig()))
+	if (!(Node.IKRetargeterAsset->GetIKRig(ERetargetSourceOrTarget::Source) && Node.IKRetargeterAsset->GetIKRig(ERetargetSourceOrTarget::Target)))
 	{
 		return;
 	}
@@ -115,7 +115,7 @@ void UOculusXRRetargetIKRetargeterEditor::ValidateAnimNodeDuringCompilation(USke
 	{
 		// validate that target bone chains exist on this skeleton
 		const FReferenceSkeleton& RefSkel = ForSkeleton->GetReferenceSkeleton();
-		const TArray<FBoneChain>& TargetBoneChains = Node.IKRetargeterAsset->GetTargetIKRig()->GetRetargetChains();
+		const TArray<FBoneChain>& TargetBoneChains = Node.IKRetargeterAsset->GetIKRig(ERetargetSourceOrTarget::Target)->GetRetargetChains();
 		for (const FBoneChain& Chain : TargetBoneChains)
 		{
 			if (RefSkel.FindBoneIndex(Chain.StartBone.BoneName) == INDEX_NONE)
@@ -138,8 +138,8 @@ void UOculusXRRetargetIKRetargeterEditor::PreloadRequiredAssets()
 	if (Node.IKRetargeterAsset)
 	{
 		PreloadObject(Node.IKRetargeterAsset);
-		PreloadObject(Node.IKRetargeterAsset->GetSourceIKRigWriteable());
-		PreloadObject(Node.IKRetargeterAsset->GetTargetIKRigWriteable());
+		PreloadObject(Node.IKRetargeterAsset->GetIKRigWriteable(ERetargetSourceOrTarget::Source));
+		PreloadObject(Node.IKRetargeterAsset->GetIKRigWriteable(ERetargetSourceOrTarget::Target));
 	}
 }
 

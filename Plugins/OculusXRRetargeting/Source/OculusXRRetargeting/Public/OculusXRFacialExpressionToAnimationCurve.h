@@ -11,7 +11,7 @@ LICENSE file in the root directory of this source tree.
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "Animation/AnimNodeBase.h"
-#include "OculusXRMovement/Public/OculusXRFaceTrackingComponent.h"
+#include "OculusXRFaceTrackingComponent.h"
 #include "OculusXRFacialExpressionMap.h"
 
 #include "OculusXRFacialExpressionToAnimationCurve.generated.h"

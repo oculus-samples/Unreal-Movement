@@ -10,11 +10,11 @@ using UnrealBuildTool;
 
 public class MovementSample : ModuleRules
 {
-	public MovementSample(ReadOnlyTargetRules Target) : base(Target)
-	{
-		PrivateDependencyModuleNames.AddRange(new string[] { "OculusXRMovement" });
-		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+    public MovementSample(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PrivateDependencyModuleNames.AddRange(new string[] { "OculusXRMovement" });
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
-	}
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+    }
 }

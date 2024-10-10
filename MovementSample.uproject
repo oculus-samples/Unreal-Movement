@@ -24,7 +24,7 @@
 			]
 		},
 		{
-			"Name": "OculusXRRetargeting",
+			"Name": "OculusXRMovement",
 			"Enabled": true
 		},
 		{
@@ -41,6 +41,30 @@
 		},
 		{
 			"Name": "LiveLinkControlRig",
+			"Enabled": true
+		},
+		{
+			"Name": "FunctionalTestingEditor",
+			"Enabled": true
+		},
+		{
+			"Name": "EditorTests",
+			"Enabled": true
+		},
+		{
+			"Name": "RuntimeTests",
+			"Enabled": true
+		},
+		{
+			"Name": "TestFramework",
+			"Enabled": true
+		},
+		{
+			"Name": "AutomationDriverTests",
+			"Enabled": true
+		},
+		{
+			"Name": "Gauntlet",
 			"Enabled": true
 		}
 	],

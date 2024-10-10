@@ -47,11 +47,15 @@ bool UOculusXRFaceTrackingCorrectives::InitializeCorrectives()
 	}
 
 	if (TargetMeshComponent == nullptr)
+	{
 		return false;
+	}
 
 	USkeletalMesh* TargetMesh = Cast<USkeletalMesh>(TargetMeshComponent->GetSkinnedAsset());
 	if (TargetMesh == nullptr)
+	{
 		return false;
+	}
 
 	const auto MorphTargetsRaw = TargetMesh->GetMorphTargets();
 

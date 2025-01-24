@@ -19,6 +19,7 @@ public class OculusXRRetargetingGraph : ModuleRules
             {
                 "Core",
                 "OculusXRRetargeting",
+                "OculusXRMovement",
             }
         );
 

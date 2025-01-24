@@ -28,6 +28,21 @@ class OCULUSXRRETARGETINGGRAPH_API UOculusXR_BodyTracking : public UAnimGraphNod
 	UPROPERTY(EditAnywhere, Category = Settings)
 	FAnimNode_OculusXRBodyTracking Node;
 
+	UFUNCTION(CallInEditor, Category = Tools)
+	void GenerateBoneMapping();
+
+	UPROPERTY(EditAnywhere, Category = Tools, meta = (ClampMin = "0", ClampMax = "1"))
+	float FilterSensitivity = 0.75;
+
+	static const int MIN_SUBSTRING_LENGTH = 3;
+
+	int CountSubstringsCharLength(const TSet<FString>& Substrings);
+
+	TSet<FString> GetSubstringsBetweenJointNames(FString sourceJointName, FString targetJointName, int minSubstringLength = MIN_SUBSTRING_LENGTH, TSet<FString> filterList = {});
+
+	UPROPERTY(EditAnywhere, Category = Tools)
+	TSet<FString> FilterJoints = { "Root", "Hips", "Body", "Spine", "Lower", "Middle", "Upper", "Chest", "Neck", "Head", "Shoulder", "Arm", "Hand", "Leg", "Foot", "Left", "Right", "Thumb", "Index", "Ring", "Pinky", "Little", "Ball" };
+
 	virtual void ValidateAnimNodeDuringCompilation(USkeleton* ForSkeleton, FCompilerResultsLog& MessageLog) override;
 
 	virtual FText GetNodeTitle(ENodeTitleType::Type TitleType) const override;

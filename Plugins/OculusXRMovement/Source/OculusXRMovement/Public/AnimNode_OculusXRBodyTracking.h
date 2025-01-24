@@ -28,11 +28,10 @@ struct OCULUSXRRETARGETING_API FAnimNode_OculusXRBodyTracking : public FAnimNode
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Debug, meta = (PinShownByDefault))
 	EOculusXRBodyDebugDrawMode DebugDrawMode;
-
 	/**
 	 * Remapping from bone ID to target skeleton's bone name.
 	 */
-	UPROPERTY(EditDefaultsOnly, Category = "OculusXR|BodyTracking")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "OculusXR|BodyTracking")
 	TMap<EOculusXRBoneID, FName> BoneRemapping = {
 		{ EOculusXRBoneID::BodyRoot, "root" },
 		{ EOculusXRBoneID::BodyHips, "pelvis" },
@@ -153,6 +152,7 @@ private:
 
 	// U Type Data - cached from other location
 	USkeletalMeshComponent* SkeletalMeshComponent = nullptr;
+	USkeleton* Skeleton = nullptr;
 
 	float Scale = 100.f;
 };

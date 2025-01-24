@@ -21,10 +21,10 @@ void FAnimNode_OculusXREyeTracking::Initialize_AnyThread(const FAnimationInitial
 	// During that time, the MetaXR plugin is not available and any calls to it will crash the editor,
 	// preventing the packaging process from completing.
 	// To avoid this, we check if the plugin is available before calling any of its functions.
-	const auto hmd = UOculusXRMRFunctionLibrary::GetOculusXRHMD();
+	const auto hmd = UOculusXRMRFunctionLibrary::GetTrackingSystem();
 	if (hmd == nullptr)
 	{
-		UE_LOG(LogOculusXRRetargeting, Warning, TEXT("MetaXR plugin is not loaded and available. Cannot retarget body at this time."));
+		UE_LOG(LogOculusXRRetargeting, Warning, TEXT("XR tracking is not loaded and available. Cannot retarget body at this time."));
 		return;
 	}
 }
@@ -42,10 +42,10 @@ void FAnimNode_OculusXREyeTracking::Evaluate_AnyThread(FPoseContext& Output)
 	// During that time, the MetaXR plugin is not available and any calls to it will crash the editor,
 	// preventing the packaging process from completing.
 	// To avoid this, we check if the plugin is available before calling any of its functions.
-	const auto hmd = UOculusXRMRFunctionLibrary::GetOculusXRHMD();
+	const auto hmd = UOculusXRMRFunctionLibrary::GetTrackingSystem();
 	if (hmd == nullptr)
 	{
-		UE_LOG(LogOculusXRRetargeting, Warning, TEXT("MetaXR plugin is not loaded and available. Cannot retarget body at this time."));
+		UE_LOG(LogOculusXRRetargeting, Warning, TEXT("XR tracking is not loaded and available. Cannot retarget body at this time."));
 		return;
 	}
 

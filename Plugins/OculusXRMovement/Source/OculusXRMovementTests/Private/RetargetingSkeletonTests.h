@@ -8,9 +8,16 @@ LICENSE file in the root directory of this source tree.
 
 #pragma once
 
+#include "Misc/EngineVersionComparison.h"
 #include "Misc/AutomationTest.h"
 #include "OculusXRMovementTypes.h"
 #include "OculusXRRetargetSkeleton.h"
+
+#if UE_VERSION_OLDER_THAN(5, 5, 0)
+#define RetargetSkeletonTestFilters EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::SmokeFilter
+#else
+#define RetargetSkeletonTestFilters EAutomationTestFlags_ApplicationContextMask | EAutomationTestFlags::SmokeFilter
+#endif // UE_VERSION_OLDER_THAN(5, 5, 0)
 
 // These tests check that the simple operations of getting bone IDs, parent bone indices, local transforms, and component transforms work as expected.
 
@@ -25,7 +32,7 @@ inline TOculusXRRetargetSkeleton<EOculusXRBoneID>* CreateSkeleton()
 	return new FOculusXRRetargetSkeletonEOculusXRBoneID(JointData);
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FGetNumBones, "OculusXRRetargetingTests.FGetNumBones", EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::SmokeFilter)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FGetNumBones, "OculusXRRetargetingTests.FGetNumBones", RetargetSkeletonTestFilters)
 inline bool FGetNumBones::RunTest(const FString& Parameters)
 {
 	const auto Skeleton = CreateSkeleton();
@@ -36,7 +43,7 @@ inline bool FGetNumBones::RunTest(const FString& Parameters)
 	return true;
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FIsValidIndex, "OculusXRRetargetingTests.FIsValidIndex", EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::SmokeFilter)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FIsValidIndex, "OculusXRRetargetingTests.FIsValidIndex", RetargetSkeletonTestFilters)
 inline bool FIsValidIndex::RunTest(const FString& Parameters)
 {
 	const auto Skeleton = CreateSkeleton();
@@ -51,7 +58,7 @@ inline bool FIsValidIndex::RunTest(const FString& Parameters)
 	return true;
 }
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FHasParentTests, "OculusXRRetargetingTests.FHasParentTests", EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::SmokeFilter)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FHasParentTests, "OculusXRRetargetingTests.FHasParentTests", RetargetSkeletonTestFilters)
 inline bool FHasParentTests::RunTest(const FString& Parameters)
 {
 	const auto Skeleton = CreateSkeleton();

@@ -8,7 +8,6 @@ LICENSE file in the root directory of this source tree.
 
 #include "AnimNode_OculusXREyeTracking.h"
 #include "OculusXRMovement.h"
-#include "OculusXRMRFunctionLibrary.h"
 #include "OculusXRRetargeting.h"
 #include "Animation/AnimInstanceProxy.h"
 #include "OculusXRRetargetingUtils.h"
@@ -21,8 +20,7 @@ void FAnimNode_OculusXREyeTracking::Initialize_AnyThread(const FAnimationInitial
 	// During that time, the MetaXR plugin is not available and any calls to it will crash the editor,
 	// preventing the packaging process from completing.
 	// To avoid this, we check if the plugin is available before calling any of its functions.
-	const auto hmd = UOculusXRMRFunctionLibrary::GetTrackingSystem();
-	if (hmd == nullptr)
+	if (!GEngine || !GEngine->XRSystem.IsValid())
 	{
 		UE_LOG(LogOculusXRRetargeting, Warning, TEXT("XR tracking is not loaded and available. Cannot retarget body at this time."));
 		return;
@@ -42,8 +40,7 @@ void FAnimNode_OculusXREyeTracking::Evaluate_AnyThread(FPoseContext& Output)
 	// During that time, the MetaXR plugin is not available and any calls to it will crash the editor,
 	// preventing the packaging process from completing.
 	// To avoid this, we check if the plugin is available before calling any of its functions.
-	const auto hmd = UOculusXRMRFunctionLibrary::GetTrackingSystem();
-	if (hmd == nullptr)
+	if (!GEngine || !GEngine->XRSystem.IsValid())
 	{
 		UE_LOG(LogOculusXRRetargeting, Warning, TEXT("XR tracking is not loaded and available. Cannot retarget body at this time."));
 		return;

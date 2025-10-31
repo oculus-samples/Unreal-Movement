@@ -134,7 +134,7 @@ bool NamingSchemes::NamingSchemeV0::FindDriver(TArray<FName>& MorphTargetNames, 
 			return true;
 		}
 
-		FString DriverNameString2 = FString::Printf(TEXT("%s_%c"), *DriverName.ToString(), *Suffix);
+		FString DriverNameString2 = FString::Printf(TEXT("%s_%c"), *DriverName.ToString(), Suffix[0]);
 		FName DriverNameFName2(*DriverNameString2);
 		DriverIndex = MorphTargetNames.IndexOfByKey(DriverNameFName2);
 

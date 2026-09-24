@@ -1,0 +1,56 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "OculusXRMovementUtility",
+	"Description": "Provides animation nodes that allow you to use Meta’s movement features from within Unreal’s Animation Graph",
+	"Category": "Other",
+	"CreatedBy": "Meta Platforms, Inc.",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "OculusXRMovementUtility",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "OculusXRMovementUtilityGraph",
+			"Type": "UncookedOnly",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "OculusXRMovementUtilityEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "OculusXRMovementUtilityTests",
+			"Type": "DeveloperTool",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"OculusXRMovementUtility"
+			]
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "IKRig",
+			"Enabled": true
+		},
+		{
+			"Name": "OculusXR",
+			"Enabled": true
+		},
+		 {
+			"Name": "MetaMovementSDK_Utility",
+			"Enabled": true
+		}
+	]
+}

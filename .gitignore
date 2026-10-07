@@ -12,6 +12,13 @@ Saved/
 # Ignore plugin binaries
 /Plugins/**/Binaries
 
+# Keep MetaMovementSDK_Utility prebuilt native libraries; build output stays ignored.
+!/Plugins/MetaMovementSDK_Utility/Binaries/
+/Plugins/MetaMovementSDK_Utility/Binaries/**
+!/Plugins/MetaMovementSDK_Utility/Binaries/**/
+!/Plugins/MetaMovementSDK_Utility/Binaries/**/MetaMovementSDK_Utility.*
+!/Plugins/MetaMovementSDK_Utility/Binaries/**/libMetaMovementSDK_Utility.so
+
 # IDEs
 .vs/
 .vscode/*
